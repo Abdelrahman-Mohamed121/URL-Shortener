@@ -10,7 +10,7 @@
 <div class="container">
     <div class="section">
         <h2>Generate Random Short URL</h2>
-        <form id="random-url-form">
+        <form method="post" id="random-url-form" action="http://localhost:8080/randomURL">
             <div class="input-group">
                 <label for="random-original-url">Original URL:</label>
                 <input type="url" id="random-original-url" name="randomOriginalUrl" placeholder="Enter your original URL" required>
@@ -35,9 +35,9 @@
     </div>
 
     <div class="section">
-        <h2>Generated Short URL</h2>
         <div class="generated-url" id="generated-url-display">
-            <p>No URL generated yet.</p>
+            <h2>Generated Short URL</h2>
+            <p>Generated URL: No URL generated yet.</p>
         </div>
     </div>
 </div>
