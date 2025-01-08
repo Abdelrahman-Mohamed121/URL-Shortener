@@ -1,4 +1,4 @@
-package com.example.URLshortener.shortenedURL;
+package com.example.URLshortener.shortURL;
 
 
 import jakarta.persistence.*;
@@ -7,14 +7,14 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "shortened_url")
-public class ShortenedURL {
+public class ShortURL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "original_url", nullable = false, columnDefinition = "TEXT")
     private String originalUrl;
 
-    public ShortenedURL() {
+    public ShortURL() {
     }
 
     @Column(name = "short_code", nullable = false, unique = true, length = 20)
@@ -26,7 +26,7 @@ public class ShortenedURL {
     @Column(name = "click_count", nullable = false)
     private Long clickCount;
 
-    public ShortenedURL(String originalUrl, String shortCode) {
+    public ShortURL(String originalUrl, String shortCode) {
         this.originalUrl = originalUrl;
         this.shortCode = shortCode;
         this.createdAt = LocalDateTime.now();
