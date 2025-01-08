@@ -16,30 +16,28 @@ public class ShortUrlApiController {
     ShortURLService shortURLService;
 
     @PostMapping("/randomURL")
-    public ResponseEntity<Map<String, String>> generateRandomURL(RedirectAttributes attributes, @RequestParam("originalUrl") String originalUrl) {
-        String shortUrl = shortURLService.generateRandomURL(originalUrl);
+    public ResponseEntity<Map<String, String>> generateRandomURL(@RequestBody Map<String, String> requestBody) {
+        String shortUrl = shortURLService.generateRandomURL(requestBody.get("originalUrl"));
         return ResponseEntity.ok(Map.of("shortUrl", shortUrl));
     }
 
     @PostMapping("/customURL")
-    public ResponseEntity<Map<String, String>> generateCustomURL(RedirectAttributes attributes,
-                                                                 @RequestParam("originalUrl") String originalUrl,
-                                                                 @RequestParam("customCode") String customCode) {
-        if (shortURLService.shortCodeExists(customCode))
+    public ResponseEntity<Map<String, String>> generateCustomURL(@RequestBody Map<String, String> requestBody) {
+        if (shortURLService.shortCodeExists(requestBody.get("customCode")))
             return new ResponseEntity<>(Map.of("message", "URL already in use, try another one"), HttpStatus.CONFLICT);
-        String customUrl = shortURLService.generateCustomURL(originalUrl, customCode);
+        String customUrl = shortURLService.generateCustomURL(requestBody.get("originalUrl"), requestBody.get("customCode"));
         return ResponseEntity.ok(Map.of("customUrl", customUrl));
     }
 
     @GetMapping("/originalURL")
-    public ResponseEntity<Map<String, String>> getOriginalUrl(RedirectAttributes attributes, @RequestParam("shortCode") String shortCode) {
-        String originalUrl = shortURLService.getOriginalURL(shortCode);
+    public ResponseEntity<Map<String, String>> getOriginalUrl(@RequestBody Map<String, String> requestBody) {
+        String originalUrl = shortURLService.getOriginalURL(requestBody.get("shortCode"));
         return ResponseEntity.ok(Map.of("originalURL", originalUrl));
     }
 
     @GetMapping("/clickCount")
-    public ResponseEntity<Map<String, String>> getClickCount(RedirectAttributes attributes, @RequestParam("shortCode") String shortCode) {
-        String clickCount = shortURLService.getClickCount(shortCode).toString();
+    public ResponseEntity<Map<String, String>> getClickCount(@RequestBody Map<String, String> requestBody) {
+        String clickCount = shortURLService.getClickCount(requestBody.get("shortCode")).toString();
         return ResponseEntity.ok(Map.of("clickCount", clickCount));
     }
 

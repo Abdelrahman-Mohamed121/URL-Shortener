@@ -29,11 +29,10 @@ public class ShortUrlViewController {
     }
 
     @PostMapping("/generate-random")
-    public String generateRandomShortUrl(@RequestParam String originalUrl, Model model) {
+    public String generateRandomShortUrl(@RequestParam("originalUrl") String originalUrl, Model model) {
         // Prepare request body
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("originalUrl", originalUrl);
-
         // Call the API to generate the random short URL
         ResponseEntity<Map> response = restTemplate.postForEntity(API_BASE_URL + "/randomURL", requestBody, Map.class);
 
@@ -53,7 +52,7 @@ public class ShortUrlViewController {
         ResponseEntity<Map> response = restTemplate.postForEntity(API_BASE_URL + "/custom", requestBody, Map.class);
 
         // Add the response data to the model for rendering
-        model.addAttribute("shortUrl", response.getBody().get("shortUrl"));
+        model.addAttribute("customURL", response.getBody().get("customURL"));
         return "home";
     }
 }
