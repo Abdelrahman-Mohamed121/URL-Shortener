@@ -42,9 +42,9 @@
             <button type="submit" class="btn">Generate</button>
         </form>
         <!-- Display generated custom URL -->
-        <div class="output" th:if="${customURL}">
+        <div class="output" th:if="${customUrl}">
             <p>Generated Custom Short URL:</p>
-            <a th:href="${customURL}" th:text="${customURL}" target="_blank"></a>
+            <a th:href="${customUrl}" th:text="${customUrl}" target="_blank"></a>
         </div>
     </div>
 </div>

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>URLshortener</artifactId>
+	<artifactId>UrlShortener</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>URLshortener</name>
+	<name>UrlShortener</name>
 	<description>URL Shortener project using Spring Boot</description>
 	<url/>
 	<licenses>
